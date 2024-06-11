@@ -18,12 +18,12 @@ public:
     }
 
     void display() {
-        cout << "è®¢å•ä¿¡æ¯ï¼š\n";
-        cout << "è´­ä¹¦äººç¼–å·ï¼š" << buyerID << endl;
-        cout << "æ€»é‡‘é¢ï¼š" << totalAmount << endl;
-        cout << "è´­ä¹°ä¹¦ç±ï¼š\n";
+        cout << "¶©µ¥ÐÅÏ¢£º\n";
+        cout << "¹ºÊéÈË±àºÅ£º" << buyerID << endl;
+        cout << "×Ü½ð¶î£º" << totalAmount << endl;
+        cout << "¹ºÂòÊé¼®£º\n";
         for (const auto& item : items) {
-            cout << "ä¹¦å·ï¼š" << item.first << ", ä»·æ ¼ï¼š" << item.second << endl;
+            cout << "ÊéºÅ£º" << item.first << ", ¼Û¸ñ£º" << item.second << endl;
         }
     }
 };

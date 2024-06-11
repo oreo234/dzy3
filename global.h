@@ -69,14 +69,14 @@ void SaveBooksToFile(const std::vector<book *> &books, const std::string &filena
     std::ofstream outputFile(filename, std::ios_base::app);
 
     if (outputFile.is_open()) {
-        std::cout << "æ­£åœ¨å°†ä¹¦ç±ä¿¡æ¯ä¿å­˜åˆ°æ–‡ä»¶...\n";
+        std::cout << "ÕıÔÚ½«Êé¼®ĞÅÏ¢±£´æµ½ÎÄ¼ş...\n";
         for (const auto &book: books) {
-            outputFile << *book << "\n"; // å‡è®¾ book ç±»é‡è½½äº† << è¿ç®—ç¬¦
+            outputFile << *book << "\n"; // ¼ÙÉè book ÀàÖØÔØÁË << ÔËËã·û
         }
         outputFile.close();
-        std::cout << "ä¹¦ç±ä¿¡æ¯å·²æˆåŠŸä¿å­˜åˆ°æ–‡ä»¶ï¼\n";
+        std::cout << "Êé¼®ĞÅÏ¢ÒÑ³É¹¦±£´æµ½ÎÄ¼ş£¡\n";
     } else {
-        std::cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼\n";
+        std::cout << "ÎŞ·¨´ò¿ªÎÄ¼ş£¡\n";
     }
 }
 
@@ -113,7 +113,7 @@ void writeOrdersToFile(const vector<Order> &orders, const string &outputFile) {
 }
 
 void displayAllBooks(const vector<book *> &books) {
-    cout << "å½“å‰ä¹¦ç±åˆ—è¡¨:\n";
+    cout << "µ±Ç°Êé¼®ÁĞ±í:\n";
     for (const auto &book: books) {
         book->display();
         cout << "\n";
@@ -137,24 +137,24 @@ vector<Order> readOrdersFromFile(const string &ordersFile) {
                 order->addBook(bookID, itemPrice);
             }
 
-            // å‡è®¾ Order å¯ä»¥é€šè¿‡ä¹°å®¶IDã€æ€»ä»·å’Œç‰©å“åˆ—è¡¨æ„å»º
+            // ¼ÙÉè Order ¿ÉÒÔÍ¨¹ıÂò¼ÒID¡¢×Ü¼ÛºÍÎïÆ·ÁĞ±í¹¹½¨
             orders.push_back(*order);
             delete order;
         }
         orderStream.close();
     } else {
-        cerr << "æ— æ³•æ‰“å¼€è®¢å•æ–‡ä»¶ï¼" << endl;
+        cerr << "ÎŞ·¨´ò¿ª¶©µ¥ÎÄ¼ş£¡" << endl;
     }
 
     return orders;
 }
 
-// ä¿®æ”¹å‡½æ•°ä»¥æ¥å—const vector<Order>&å¹¶è¿”å›Order const*
+// ĞŞ¸Äº¯ÊıÒÔ½ÓÊÜconst vector<Order>&²¢·µ»ØOrder const*
 const Order *findUserOrder(const vector<Order> &orders, int buyerID) {
     for (const auto &order: orders) {
-        // è¿™é‡Œä¹Ÿä¿®æ”¹ä¸ºconst auto&
+        // ÕâÀïÒ²ĞŞ¸ÄÎªconst auto&
         if (order.buyerID == buyerID) {
-            return &order; // ç°åœ¨å¯ä»¥å®‰å…¨è¿”å›Order const*ï¼Œå› ä¸ºorderæ˜¯constçš„
+            return &order; // ÏÖÔÚ¿ÉÒÔ°²È«·µ»ØOrder const*£¬ÒòÎªorderÊÇconstµÄ
         }
     }
     return nullptr;
@@ -163,18 +163,18 @@ const Order *findUserOrder(const vector<Order> &orders, int buyerID) {
 buyer *findUser(const vector<buyer *> &buyers, const string &username) {
     for (auto &buyerPtr: buyers) {
         if (buyerPtr->getBuyName() == username) {
-            return buyerPtr; // æ‰¾åˆ°äº†åŒ¹é…çš„ç”¨æˆ·ï¼Œè¿”å›æŒ‡å‘å®ƒçš„æŒ‡é’ˆ
+            return buyerPtr; // ÕÒµ½ÁËÆ¥ÅäµÄÓÃ»§£¬·µ»ØÖ¸ÏòËüµÄÖ¸Õë
         }
     }
-    return nullptr; // å¦‚æœæ²¡æœ‰æ‰¾åˆ°ï¼Œè¿”å›nullptr
+    return nullptr; // Èç¹ûÃ»ÓĞÕÒµ½£¬·µ»Ønullptr
 }
 
 buyer *findUserOrder(const vector<buyer *> &buyers, int buyerID) {
     for (buyer *buyerPtr: buyers) {
         if (buyerPtr->getID() == buyerID) {
-            return buyerPtr; // æ‰¾åˆ°äº†åŒ¹é…çš„ä¹°å®¶ï¼Œè¿”å›æŒ‡å‘å®ƒçš„æŒ‡é’ˆ
+            return buyerPtr; // ÕÒµ½ÁËÆ¥ÅäµÄÂò¼Ò£¬·µ»ØÖ¸ÏòËüµÄÖ¸Õë
         }
     }
-    return nullptr; // å¦‚æœæ²¡æœ‰æ‰¾åˆ°åŒ¹é…çš„ä¹°å®¶ï¼Œè¿”å›nullptr
+    return nullptr; // Èç¹ûÃ»ÓĞÕÒµ½Æ¥ÅäµÄÂò¼Ò£¬·µ»Ønullptr
 }
 #endif //GLOBAL_H

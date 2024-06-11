@@ -22,10 +22,11 @@ int main() {
     int choose;
     while (true) {
         cout << "请选择功能" << endl;
-        cout << "1.购买书籍算价格" << endl;
+        cout << "1.添加书籍到购物车" << endl;
         cout << "2.增加用户" << endl;
-        cout << "3.退出" << endl;
-        cout << "4.更改书籍" << endl;
+        cout << "3.结账" << endl;
+        cout << "4.管理员模式" << endl;
+        cout<<"5.退出"<<endl;
         cin >> choose;
         int buyerid;
         string newName;
@@ -66,7 +67,7 @@ int main() {
                             if (buyer->getMemberType() == 2) {
                                 cout << "购书人信息：" << endl;
                                 cout << "编号: " << buyer->getID() << ", 姓名: " << buyer->getBuyName()
-                                        << ", 地址: " << buyer->getAddress() << ", 会员类型:荣誉会员·" << endl;
+                                        << ", 地址: " << buyer->getAddress() << ", 会员类型:荣誉会员" << endl;
                             }
                         }
                     if (!found) {
@@ -109,17 +110,18 @@ int main() {
                     for (book *book: currentBooks) {
                         delete book;
                     }
-                    vector<Order> orders = readOrdersFromFile("orders.txt");
-                    for (const auto &order: orders) {
-                        cout << "订单信息：" << endl;
-                        cout << "买家ID：" << order.buyerID << endl;
-                        cout << "总价：" << order.totalAmount << endl;
-                        cout << "购买的书籍：" << endl;
-                        for (const auto &item: order.items) {
-                            cout << "书籍ID：" << item.first << "，价格：" << item.second << endl;
-                        }
-                        cout << "\n";
-                    }
+                    cout<<"成功添加订单！"<<endl;
+//                    vector<Order> orders = readOrdersFromFile("orders.txt");
+//                    for (const auto &order: orders) {
+//                        cout << "订单信息：" << endl;
+//                        cout << "买家ID：" << order.buyerID << endl;
+//                        cout << "总价：" << order.totalAmount << endl;
+//                        cout << "购买的书籍：" << endl;
+//                        for (const auto &item: order.items) {
+//                            cout << "书籍ID：" << item.first << "，价格：" << item.second << endl;
+//                        }
+//                        cout << "\n";
+//                    }
                 }
                 break;
             }
@@ -130,7 +132,16 @@ int main() {
                 cin >> newName;
                 cout << "请输入新用户的编号：";
                 cin >> newID;
-                cout << "请输入新用户的地址：";
+                bool idExists = false;
+                for (const auto &buyer : buyers) {
+                    if (buyer->getID() == newID) {
+                        idExists = true;
+                        break;
+                    }
+                }
+                if (idExists) {
+                    cout << "错误：该用户编号已经存在，请输入一个唯一的编号。\n";}
+                else {cout << "请输入新用户的地址：";
                 cin >> newAddress;
                 cout << "请输入新用户的会员类型：" << endl;
                 cout << "普通顾客为0\n会员为1\n荣誉会员为2" << endl;
@@ -160,7 +171,7 @@ int main() {
                 }
 
                 // 删除新创建的buyer对象，避免内存泄漏
-                delete newMember;
+                delete newMember;}
                 break;
             }
             case 3: {
@@ -185,9 +196,10 @@ int main() {
                     double discountedTotal = totalAmount * (1 - discountRate);
 
                     cout << "用户名: " << username << endl;
-                    cout << "原始总金额: " << totalAmount << endl;
+                    cout << "会员等级: " << user->getLeagueGrade() << endl;
+                    cout << "原始总价: " << totalAmount << endl;
                     cout << "折扣率: " << discountRate * 100 << "%" << endl;
-                    cout << "折后总金额: " << discountedTotal << endl;
+                    cout << "折后金额: " << discountedTotal << endl;
                 } else {
                     cout << "未找到用户名为 " << username << " 的用户。" << endl;
                 }
@@ -238,6 +250,9 @@ int main() {
                     default:
                         cout << "无效选择！\n";
                 }
+                break;
+            }
+            case 5:{
                 break;
             }
 

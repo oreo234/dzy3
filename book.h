@@ -16,11 +16,11 @@ private:
 public:
     book(int b_id, string b_n, string au, string pu, double pr) : bookID(b_id), bookName(b_n), author(au), publishing(pu), price(pr) {}
     void display() {
-        cout << "ä¹¦å·: " << bookID << "\t";
-        cout << "ä¹¦å: " << bookName << "\t";
-        cout << "ä½œè€…: " << author << "\t";
-        cout << "å‡ºç‰ˆç¤¾: " << publishing << "\t";
-        cout << "ä»·æ ¼: " << price << "\t";
+        cout << "ÊéºÅ: " << bookID << "\t";
+        cout << "ÊéÃû: " << bookName << "\t";
+        cout << "×÷Õß: " << author << "\t";
+        cout << "³ö°æÉç: " << publishing << "\t";
+        cout << "¼Û¸ñ: " << price << "\t";
     }
     friend std::ostream& operator<<(std::ostream& os, const book& b);
     int getBookID() { return bookID; }

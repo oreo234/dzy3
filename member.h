@@ -22,10 +22,29 @@ public:
             cout << "级别错误" << endl;
         }
     }
+    string getName() const {
+        return name;
+    }
     double getDiscountRate() const {
-        if (leagueGrade >= 1 && leagueGrade <= 5) {
-            return (5 - leagueGrade) / 10.0; // 调整以直接返回折扣率，注意这里的计算逻辑需根据实际需求调整
-        } else {
+        if (leagueGrade ==1) {
+            return 0.9; // 调整以直接返回折扣率，注意这里的计算逻辑需根据实际需求调整
+        }
+        else if(leagueGrade==2){
+            return 0.8;
+        }
+        else if(leagueGrade==3){
+            return 0.7;
+        }
+        else if(leagueGrade==4){
+            return 0.6;
+        }
+        else if(leagueGrade==5){
+            return 0.5;
+        }
+        else if(leagueGrade==6){
+            return 0.4;
+        }
+        else {
             return 0.0; // 如果等级不在范围内，不给予折扣
         }
     }

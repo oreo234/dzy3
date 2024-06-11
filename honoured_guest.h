@@ -10,12 +10,12 @@ class honoured_guest : public buyer {
 private:
     double discountRate;
 public:
-    honoured_guest(string n, int b, int m, int l,double r, string a, double p) : buyer(n,m,l, b, a, p), discountRate(r) {}
+    honoured_guest(string n, int b, int m, int l, string a, double p) : buyer(n,m,l, b, a, p) {}
     void display() override {
-        cout << "è´­ä¹¦äººå§“å: " << name << "\t";
-        cout << "è´­ä¹¦äººç¼–å·ï¼š " << buyerID << "\t";
-        cout << "è´­ä¹¦äººä¸ºä¼šå‘˜ï¼ŒæŠ˜æ‰£çŽ‡ä¸º: " << discountRate * 100 << "% \n";
-        cout << "åœ°å€ï¼š" << address << "\n\n";
+        cout << "¹ºÊéÈËÐÕÃû: " << name << "\t";
+        cout << "¹ºÊéÈË±àºÅ£º " << buyerID << "\t";
+        cout << "¹ºÊéÈËÎª»áÔ±£¬ÕÛ¿ÛÂÊÎª: " << discountRate * 100 << "% \n";
+        cout << "µØÖ·£º" << address << "\n\n";
     }
     void setPay(double p) override {
         pay += (1 - discountRate) * p;
