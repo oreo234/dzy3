@@ -134,6 +134,7 @@ int main() {
                 cin >> newID;
                 bool idExists = false;
                 for (const auto &buyer : buyers) {
+                    
                     if (buyer->getID() == newID) {
                         idExists = true;
                         break;
